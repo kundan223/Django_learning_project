@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Tweet Page</title>
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            color: #fff;
-        }
-    </style>
-</head>
-<body>
-    <h1>Hello Django! This is the Tweet page.</h1>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %} Tweet Page {% endblock %}
+{% block content %}
+<h1 class="text-center mt-4" >Hello Django! This is the Tweet page by kundan yadav .</h1>
+{% endblock %}
