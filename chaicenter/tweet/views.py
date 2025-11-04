@@ -40,3 +40,12 @@ def tweet_edit(reuqest , tweet_id):
     else:
         form = TweetForm(instance=tweet)
         return render (request , ' tweet_form.html',{ 'form': form })
+
+
+def tweet_delete(request , tweet_id):
+    get_object_or_404(Tweet , pk =tweet_id , user = request.user)
+    if request.method == 'POST':
+        tweet.delete()
+        return redirect('tweet_list')
+
+    return render(request, 'tweet_confirm_delete.html', {'tweet': tweet })
