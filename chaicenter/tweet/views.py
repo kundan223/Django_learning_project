@@ -49,3 +49,4 @@ def tweet_delete(request , tweet_id):
         return redirect('tweet_list')
 
     return render(request, 'tweet_confirm_delete.html', {'tweet': tweet })
+    
