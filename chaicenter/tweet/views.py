@@ -1,4 +1,5 @@
 import re
+from django.http import request
 from django.shortcuts import redirect, render
 from .models import Tweet
 from .forms import TweetForm
@@ -16,7 +17,7 @@ def tweet_create(request);
     if request.method == "POST":
         TweetForm(request.POST , request.FILES)
         if form.is_valid():
-            tweet = form.save(commit=FALSE)
+            tweet = form.save(commit=False)
             tweet.user = request.user
             tweet.save()
             return redirect('tweet_list')
@@ -26,4 +27,16 @@ def tweet_create(request);
     return render (request , ' tweet_form.html',{ 'form': form })
 
 
-def tweet_edit()
+def tweet_edit(reuqest , tweet_id):
+    tweet = get_object_or_404(Tweet , pk = tweet_id, user = request.user)
+    if request.method == 'POST' :
+        TweetForm(request.POST , request.FILES , instance= tweet)
+        if form.is_valid():
+            tweet = form.save(commit=False)
+            tweet.user = request.user
+            tweet.save()
+            return redirect('tweet_list')
+
+    else:
+        form = TweetForm(instance=tweet)
+        return render (request , ' tweet_form.html',{ 'form': form })
